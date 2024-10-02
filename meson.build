@@ -83,7 +83,6 @@ shared_module(
         dependency('granite'),
         dependency('gtk+-3.0'),
         dependency('libgtop-2.0'),
-        dependency('gdk-x11-3.0'),
         wingpanel,
     ],
     install: true,

@@ -24,7 +24,6 @@ namespace WingpanelMonitor {
     public class DisplayWidget : Gtk.Grid {
         private IndicatorWidget cpu_info;
         private IndicatorWidget ram_info;
-        private IndicatorWidget workspace_info;
         private IndicatorWidget icon_only;
         private NetworkWidget network_info;
 
@@ -40,7 +39,6 @@ namespace WingpanelMonitor {
 
             cpu_info = new IndicatorWidget ("cpu-symbolic", 4);
             ram_info = new IndicatorWidget ("ram-symbolic", 4);
-            workspace_info = new IndicatorWidget ("computer-symbolic", 2);
             icon_only = new IndicatorWidget ("utilities-system-monitor-symbolic", 0);
             icon_only.label_value = "";
             network_info = new NetworkWidget ();
@@ -49,18 +47,12 @@ namespace WingpanelMonitor {
             settings.bind ("show-cpu", cpu_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-ram", ram_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-network", network_info, "display", SettingsBindFlags.GET);
-            settings.bind ("show-workspace", workspace_info, "display", SettingsBindFlags.GET);
             settings.bind ("icon-only", icon_only, "display", SettingsBindFlags.GET);
 
             add (icon_only);
             add (network_info);
             add (cpu_info);
             add (ram_info);
-            add (workspace_info);
-        }
-
-        public void update_workspace (int val) {
-            workspace_info.label_value = val.to_string ();
         }
 
         public void update_cpu (int val) {

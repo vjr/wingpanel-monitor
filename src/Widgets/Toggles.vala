@@ -27,7 +27,6 @@ public class WingpanelMonitor.TogglesWidget : Gtk.Grid {
     private Granite.SwitchModelButton ram_switch;
     private Granite.SwitchModelButton network_switch;
     private Granite.SwitchModelButton bits_switch;
-    private Granite.SwitchModelButton workspace_switch;
     private Settings settings;
 
     public TogglesWidget () {
@@ -62,10 +61,6 @@ public class WingpanelMonitor.TogglesWidget : Gtk.Grid {
             sensitive = network_switch.active,
             margin_bottom = 5
         };
-        workspace_switch = new Granite.SwitchModelButton ("Workspace number") {
-            active = settings.get_boolean ("show-workspace"),
-            margin_bottom = 5
-        };
 
         indicator.toggled.connect (() => settings.set_boolean ("display-indicator", indicator.get_active ()));
         cpu_switch.toggled.connect (() => settings.set_boolean ("show-cpu", cpu_switch.get_active ()));
@@ -76,7 +71,6 @@ public class WingpanelMonitor.TogglesWidget : Gtk.Grid {
             bits_switch.sensitive = network_switch.active;
         });
         bits_switch.toggled.connect (() => settings.set_boolean ("show-bits", bits_switch.get_active ()));
-        workspace_switch.toggled.connect (() => settings.set_boolean ("show-workspace", workspace_switch.get_active ()));
 
         add (indicator);
         add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL) { margin_bottom = 5 });
@@ -85,6 +79,5 @@ public class WingpanelMonitor.TogglesWidget : Gtk.Grid {
         add (ram_switch);
         add (network_switch);
         add (bits_switch);
-        add (workspace_switch);
     }
 }
