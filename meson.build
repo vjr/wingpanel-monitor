@@ -50,7 +50,7 @@ executable(
         dependency('granite'),
         dependency('gtk+-3.0'),
         dependency('libgtop-2.0'),
-        dependency('gweather-3.0'),
+        dependency('gweather4'),
         dependency('libgeoclue-2.0'),
         dependency('libhandy-1'),
         wingpanel,

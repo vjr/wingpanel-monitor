@@ -19,9 +19,9 @@ libglib2.0-dev
 libgtop2-dev
 libgranite-dev
 libgtk-3-dev
-libwingpanel-3.0-dev
+libwingpanel-dev
 libgeoclue-2-dev
-libgweather-3-dev
+libgweather-4-dev
 libhandy-1-dev 
 meson
 valac
@@ -31,7 +31,7 @@ You can install them:
 
 - elementary Odin 6.x.x:
 ```bash
-sudo apt install libgtop2-dev libgranite-dev libgtk-3-dev libwingpanel-3.0-dev meson valac libgeoclue-2-dev libgweather-3-dev libhandy-1-dev 
+sudo apt install libgtop2-dev libgranite-dev libgtk-3-dev libwingpanel-dev meson valac libgeoclue-2-dev libgweather-4-dev libhandy-1-dev
 ```
 Run `meson` to configure the build environment and then `ninja` to build
 
