@@ -61,7 +61,6 @@ namespace WingpanelMonitor {
             if (display_widget == null) {
                 display_widget = new DisplayWidget (settings);
                 update_display_widget_data ();
-                enable_weather_update ();
             }
             return display_widget;
         }
@@ -88,7 +87,6 @@ namespace WingpanelMonitor {
                     display_widget.update_memory (memory_data.percentage_used);
                     bytes = network_data.get_bytes ();
                     display_widget.update_network (bytes[0], bytes[1]);
-                    display_widget.update_weather ();
                     update_popover_widget_data ();
                     return GLib.Source.CONTINUE;
                 });
@@ -102,21 +100,6 @@ namespace WingpanelMonitor {
             popover_widget.update_ram (memory_data.used, memory_data.total);
             popover_widget.update_swap (memory_data.used_swap, memory_data.total_swap);
             popover_widget.update_network (bytes[0], bytes[1]);
-        }
-
-        private void enable_weather_update () {
-            var refresh_timeout = Timeout.add_seconds (settings.get_int ("weather-refresh-rate") * 60, update_weather);
-
-            settings.changed["weather-refresh-rate"].connect ( () =>{
-                GLib.Source.remove (refresh_timeout);
-                refresh_timeout = Timeout.add_seconds (settings.get_int ("weather-refresh-rate") * 60, update_weather);
-            });
-        }
-
-        private bool update_weather () {
-            info ("Indicator: Request weather refresh");
-            settings.set_boolean ("weather-refresh", true);
-            return true;
         }
     }
 }

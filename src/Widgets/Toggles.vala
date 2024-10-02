@@ -28,8 +28,6 @@ public class WingpanelMonitor.TogglesWidget : Gtk.Grid {
     private Granite.SwitchModelButton network_switch;
     private Granite.SwitchModelButton bits_switch;
     private Granite.SwitchModelButton workspace_switch;
-    private Granite.SwitchModelButton weather_switch;
-    private SpinRow weather_refresh_spin;
     private Settings settings;
 
     public TogglesWidget () {
@@ -68,11 +66,6 @@ public class WingpanelMonitor.TogglesWidget : Gtk.Grid {
             active = settings.get_boolean ("show-workspace"),
             margin_bottom = 5
         };
-        var current_location = settings.get_string ("weather-location");
-        weather_switch = new Granite.SwitchModelButton ("Weather for %s".printf (current_location)) {
-            active = settings.get_boolean ("show-weather"),
-            margin_bottom = 5
-        };
 
         indicator.toggled.connect (() => settings.set_boolean ("display-indicator", indicator.get_active ()));
         cpu_switch.toggled.connect (() => settings.set_boolean ("show-cpu", cpu_switch.get_active ()));
@@ -84,13 +77,6 @@ public class WingpanelMonitor.TogglesWidget : Gtk.Grid {
         });
         bits_switch.toggled.connect (() => settings.set_boolean ("show-bits", bits_switch.get_active ()));
         workspace_switch.toggled.connect (() => settings.set_boolean ("show-workspace", workspace_switch.get_active ()));
-        weather_switch.toggled.connect (() => settings.set_boolean ("show-weather", weather_switch.get_active ()));
-
-        weather_refresh_spin = new SpinRow ("Weather refresh rate (min)", 1, 60);
-        weather_refresh_spin.set_spin_value (settings.get_int ("weather-refresh-rate"));
-        weather_refresh_spin.changed.connect ( () => {
-            settings.set_int ("weather-refresh-rate", weather_refresh_spin.get_spin_value ());
-        });
 
         add (indicator);
         add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL) { margin_bottom = 5 });
@@ -100,8 +86,5 @@ public class WingpanelMonitor.TogglesWidget : Gtk.Grid {
         add (network_switch);
         add (bits_switch);
         add (workspace_switch);
-        add (weather_switch);
-        add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL) { margin_bottom = 5 });
-        add (weather_refresh_spin);
     }
 }

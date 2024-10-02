@@ -31,7 +31,6 @@ config_h_dir = include_directories('.')
 
 
 c_args = [
-  '-DGWEATHER_I_KNOW_THIS_IS_UNSTABLE',
   '-include', 'config.h',
   '-w',
 ]
@@ -50,8 +49,6 @@ executable(
         dependency('granite'),
         dependency('gtk+-3.0'),
         dependency('libgtop-2.0'),
-        dependency('gweather4'),
-        dependency('libgeoclue-2.0'),
         dependency('libhandy-1'),
         wingpanel,
         meson.get_compiler('c').find_library('m', required : false),
