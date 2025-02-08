@@ -28,7 +28,7 @@ valac
 
 You can install them: 
 
-- elementary Odin 6.x.x:
+- elementary OS 8 (Cerce):
 ```bash
 sudo apt install libgtop2-dev libgudev-1.0-dev libgranite-dev libgtk-3-dev libwingpanel-dev meson valac libhandy-1-dev
 ```
