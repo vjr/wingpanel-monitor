@@ -57,9 +57,13 @@ namespace WingpanelMonitor {
         }
 
         private void update_total () {
-            GTop.Memory memory;
-            GTop.get_mem (out memory);
-            _total = (double)memory.total;
+            GUdev.Client? client = new GUdev.Client ({"memory"});
+            GUdev.Device? device = client.query_by_sysfs_path ("/sys/devices/virtual/dmi/id");
+            int devices = device.get_property_as_int ("MEMORY_ARRAY_NUM_DEVICES");
+            _total = 0;
+            for (int item = 0; item < devices; ++item) {
+                _total += (double)device.get_property_as_uint64 ("MEMORY_DEVICE_%i_SIZE".printf (item));
+            }
         }
 
         private void update_used () {

@@ -17,6 +17,7 @@ You'll need the following dependencies:
 ```
 libglib2.0-dev
 libgtop2-dev
+libgudev-1.0-dev
 libgranite-dev
 libgtk-3-dev
 libwingpanel-dev
@@ -29,7 +30,7 @@ You can install them:
 
 - elementary Odin 6.x.x:
 ```bash
-sudo apt install libgtop2-dev libgranite-dev libgtk-3-dev libwingpanel-dev meson valac libhandy-1-dev
+sudo apt install libgtop2-dev libgudev-1.0-dev libgranite-dev libgtk-3-dev libwingpanel-dev meson valac libhandy-1-dev
 ```
 Run `meson` to configure the build environment and then `ninja` to build
 
