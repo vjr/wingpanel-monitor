@@ -59,16 +59,12 @@ namespace WingpanelMonitor {
         }
 
         private void update_frequency () {
-            double maxcur = 0;
-            for (uint i = 0, isize = (int)get_num_processors (); i < isize; ++i) {
-                var cur = 1000.0 * read (i, "scaling_cur_freq");
-                if (i == 0) {
-                    maxcur = cur;
-                } else {
-                    maxcur = double.max (cur, maxcur);
-                }
+            double total_freq = 0.0;
+            uint num_procs = get_num_processors ();
+            for (uint i = 0; i < num_procs; ++i) {
+                total_freq += 1000.0 * read (i, "scaling_cur_freq");
             }
-            _frequency = (double)maxcur;
+            _frequency = total_freq / num_procs;
         }
 
 
