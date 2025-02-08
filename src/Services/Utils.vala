@@ -29,11 +29,12 @@ namespace WingpanelMonitor {
             const string[] SIZE_UNITS = {
                 N_ ("{} kB"),
                 N_ ("{} MB"),
-                N_ ("{} GB")
+                N_ ("{} GB"),
+                N_ ("{} TB")
             };
             int index = -1;
-            while (index + 1 < SIZE_UNITS.length && (val >= 1000 || index < 0)) {
-                val /= 1000;
+            while (index + 1 < SIZE_UNITS.length && (val >= 1024 || index < 0)) {
+                val /= 1024;
                 ++index;
             }
             if (index < 0) {
